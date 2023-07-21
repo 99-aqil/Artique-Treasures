@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Artique Treasures</title>
+</head>
+<body>
+    {% block content %}
+    <div class="home">
+        <section class="hero is-medium is-dark mb-6">
+            <div class="hero-body has-text-centered">
+                <p class="title mb-6">
+                    Welcome to Artique Treasures
+                </p>
+                <p class="subtitle">
+                    Immerse Yourself in a World of Art <br> & Antiques Tailored to Your Passion
+                </p>
+            </div>
+        </section>
+        <div class="row">
+            <div class="topic">
+                <h2 class="is-size-2 has-text-centered">Latest products</h2>
+            </div>
+            <div class="latest-products">
+                {% for product in latestProducts reversed %}
+                <div class="box">
+                    <figure class="image mb-4">
+                        <img src="{{ product.get_thumbnail }}" alt="{{ product.name }}">
+                    </figure>
+    
+                    <h3 class="is-size-4">{{ product.name }}</h3>
+                    <p class="is-size-6 has-text-grey">৳ {{ product.price }}</p>
+    
+                    <a href="{% url 'product-detail' product.id %}" class="button is-dark mt-4">View details</a>
+                </div>
+                {% endfor %}
+            <div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

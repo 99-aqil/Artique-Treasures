@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+    
+                // Get the form data
+                var formData = {
+                    fullname: $('input[name=fullname]').val(),
+                    email: $('input[name=email]').val(),
+                    username: $('input[name=username]').val(),
+                    password: $('input[name=password]').val(),
+                    userType: $('select[name=userType]').val()
+                };
+    
+                // Send the request with the access token in the header
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkxMTc3NzY1LCJpYXQiOjE2ODk4ODE3NjUsImp0aSI6IjUwZDQxZjRiYjgxODQ2ZTBhODdmOWFkOGFiM2U5MGI5IiwidXNlcl9pZCI6MX0._lFJ3JGaAPE5tDcdDv_fVI8FLB4e3x_UROIvhgx-fxU'
+                    },
+                    data: formData,
+                    success: function(response) { 
+                        window.location.href = 'http://127.0.0.1:8000/';
+                    },
+                    error: function(error) {
+                        // Handle error response
+                    }
+                });
+            });
+        });
+    </script>
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <title>Student Register</title>
+</head>
+<body>
+    <div class="container-fluid py-5">
+        <!-- For demo purpose -->
+        <div class="row mb-4">
+          <div class="col-lg-8 mx-auto text-center">
+            <h1 class="display-4">Artique Treasures</h1>
+            <p class="lead mb-0">Register to Discover Exquisite Artworks <br> & Antiques and Uncover Endless Inspiration</p>
+          </div>
+        </div>
+        <!-- End -->
+        <div class="container">
+            <center>
+                {% if messages %}
+                    {% for message in messages %} 
+                    <div class="alert {{message.tags}} m-1" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-label="Close">&times;</span>
+                    </div>
+                    {% endfor %} 
+                {% endif %}
+            </center>
+        </div>
+        <br>
+        <div class="row table">
+            <div class="col-lg-12 mx-auto">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{% url 'register' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <div class="form-group">
+                                            <input type="text" name="fullname" placeholder="Full Name" required class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <div class="form-group">
+                                            <input type="email" name="email" placeholder="Email" required class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <div class="form-group">
+                                            <input type="text" name="username" placeholder="Username" required class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <div class="form-group">
+                                            <input type="password" name="password" placeholder="Password" required class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <select class="form-select form-control" aria-label="Default select example" name="userType" aria-placeholder="User Type">
+                                        <option disabled selected>User Type</option>
+                                        <option value="Seller">Seller</option>
+                                        <option value="Customer">Customer</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+                            </form>
+                            <p class="text-center">If you already have an account, <a href="/">login</a> instead.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

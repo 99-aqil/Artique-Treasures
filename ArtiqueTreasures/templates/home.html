@@ -1,0 +1,76 @@
+
+<h1>User Information</h1>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>User Type</th>
+    </tr>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.userType }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="Logout">
+</form>
+
+
+<h1>User Information</h1>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>User Type</th>
+    </tr>
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.userType }}</td>
+    </tr>
+    {% comment %} {% for u in user %}
+        
+    {% endfor %} {% endcomment %}
+</table>
+
+<form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="Logout">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault();
+
+            // Get the form data
+            var formData = {
+                category: $('select[name=Category]').val(),
+                name: $('input[name=Name]').val(),
+                slug: $('input[name=Slug]').val(),
+                description: $('input[name=Description]').val(),
+                price: $('input[name=Price]').val(),
+                image: $('input[name=Image]').val()
+            };
+
+            // Send the request with the access token in the header
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: formData,
+                success: function(response) { 
+                    window.location.href = 'http://127.0.0.1:8000/productsSellerView/';
+                },
+                error: function(error) {
+                    // Handle error response
+                }
+            });
+        });
+    });
+</script>

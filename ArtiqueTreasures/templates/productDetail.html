@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-section">
+    <div class="row">
+        <div class="topic">
+            <h2 class="section-title">Product Detail</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="product-box">
+            <div class="col-md-6">
+                <figure class="product-image">
+                    <img src="{{ product.get_image }}" alt="{{ product.name }}">
+                </figure>
+            </div>
+            <div class="col-md-6">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-description">{{ product.description }}</p>
+                <p class="product-price">৳ {{ product.price }}</p>
+                <a href="{% url 'add-to-cart' product.id %}" class="product-button">Add To Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

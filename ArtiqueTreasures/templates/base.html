@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <title>{% block title %}Artique Treasures{% endblock %}</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar__left">
+            <div class="navbar__logo">
+                <a href="{% url 'products-customer-view' %}" class="text-danger"> 
+                Artique Treasures
+            </a>
+            </div>
+            <div class="navbar__search-form">
+                <form method="GET" action="{% url 'search' %}">
+                    <input type="text" name="query" placeholder="Search" value="{{ request.GET.query }}">
+                    <input type="submit" value="Search">
+                </form>
+            </div>       
+        </div>
+        <div class="navbar__right">
+            <a href="{% url 'art-category' %}" class="navbar__link1">Art</a>
+            <a href="{% url 'antique-category' %}" class="navbar__link1">Antique</a>
+            <a href="{% url 'cart-view' %}" class="navbar__link1">Cart {% if cart_items_count > 0 %} ({{ cart_items_count }}) {% endif %}</a>
+            <div class="navbar__logout-form">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div id="footer">
+    </div>
+</body>
+</html>
