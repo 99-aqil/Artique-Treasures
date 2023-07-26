@@ -15,16 +15,16 @@ def logoutView(request):
     return redirect('login-page')
 
 
-def admin_product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = AdminProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('products-admin-view')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'adminEdit.html', {'form': form})
+# def admin_product_update(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
+#     if request.method == 'POST':
+#         form = AdminProductForm(request.POST, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('products-admin-view')
+#     else:
+#         form = ProductForm(instance=product)
+#     return render(request, 'adminEdit.html', {'form': form})
 
 
 
