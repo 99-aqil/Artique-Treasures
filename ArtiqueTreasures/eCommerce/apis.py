@@ -42,11 +42,31 @@ class UserLoginAPIView(APIView):
                 all_users_serializer = UserSerializer(all_users, many=True)
                 return Response({'message': 'Seller', 'data': all_users_serializer.data}, status=status.HTTP_201_CREATED)
                 # return render(request, 'sellerView.html', {'users': all_users_serializer.data})
+            elif user.userType == 'Admin':
+                all_users = User.objects.all()
+                all_products = Product.objects.all()
+                all_users_serializer = UserSerializer(all_users, many=True)
+                all_products_serializer = ProductSerializer(all_products, many=True)
+                return Response({'message': 'Admin', 'user_data': all_users_serializer.data, 'product_data': all_products_serializer.data}, status=status.HTTP_201_CREATED)
+                # return render(request, 'sellerView.html', {'users': all_users_serializer.data})
             serializer = UserSerializer(user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
             # return render(request, 'customerView.html', {'user': serializer.data})
         except User.DoesNotExist:
             return Response({'error': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+"""***************************************** APIS  FOR  ADMIN *****************************************"""
+            
+
+class ProductsListAdminView(APIView):
+    def get(self, request, format=None):
+        users = User.objects.all()
+        user_serializer = UserSerializer(users, many=True)
+        products = Product.objects.all()
+        product_serializer = ProductSerializer(products, many=True)
+        return render(request, 'adminView.html', {'users': user_serializer.data, 'latestProducts': product_serializer.data})
+        # return Response(serializer.data)
 
 
 """***************************************** APIS  FOR  SELLER *****************************************"""
@@ -65,7 +85,7 @@ class ProductsListSellerView(APIView):
 
 class ProductsListCustomerView(APIView):
     def get(self, request, format=None):
-        products = Product.objects.all()
+        products = Product.objects.filter(status="Approved")
         serializer = ProductSerializer(products, many=True)
         return render(request, 'customerView.html', {'latestProducts': serializer.data})
         # return Response(serializer.data)
@@ -73,14 +93,14 @@ class ProductsListCustomerView(APIView):
 
 class ArtCategoryView(APIView):
     def get(self, request):
-        products = Product.objects.filter(category="Art")
+        products = Product.objects.filter(category="Art", status="Approved")
         serializer = ProductSerializer(products, many=True)
         return render(request, 'art.html', {'products': serializer.data})
 
 
 class AntiqueCategoryView(APIView):
     def get(self, request):
-        products = Product.objects.filter(category="Antique")
+        products = Product.objects.filter(category="Antique", status="Approved")
         serializer = ProductSerializer(products, many=True)
         return render(request, 'antique.html', {'products': serializer.data})
         
@@ -106,7 +126,7 @@ def search(request):
     query = request.GET.get('query', '')
 
     if query:
-        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query), status="Approved")
         serializer = ProductSerializer(products, many=True)
         return render(request, 'search.html', {'products': serializer.data, 'query': query})
     else:

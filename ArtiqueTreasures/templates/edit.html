@@ -67,6 +67,15 @@
                                 {{form.price}}
                             </div>
                         </div>
+                        {% if form.status.value == "Approved" %}
+                        <div class="col-6 mb-3">
+                            <label>Status</label>
+                            <select name="status" class="form-control">
+                                <option value="Not Dispatched" {% if form.status.value == "Approved" %}selected{% endif %}>Not Dispatched</option>
+                                <option value="Dispatched" {% if form.status.value == "Dispatched" %}selected{% endif %}>Dispatched</option>
+                            </select>
+                        </div>
+                        {% endif %}
                     </div>
                     <br>
                     <div class="modal-footer">

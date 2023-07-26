@@ -33,8 +33,11 @@
                     },
                     data: formData,
                     success: function(response) { 
-                        if (response.message) {
+                        if (response.message == "Seller") {
                             window.location.href = 'http://127.0.0.1:8000/productsSellerView/';
+                        } 
+                        else if (response.message == "Admin") {
+                            window.location.href = 'http://127.0.0.1:8000/productsAdminView/';
                         } 
                         else {
                             window.location.href = 'http://127.0.0.1:8000/productsCustomerView/';

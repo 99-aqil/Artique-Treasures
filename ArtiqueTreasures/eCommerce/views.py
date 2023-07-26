@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 from .models import Product
-from .forms import ProductForm
+from .forms import AdminProductForm, ProductForm
 
 
 def loginView(request):
@@ -13,6 +13,18 @@ def registrationView(request):
 
 def logoutView(request):
     return redirect('login-page')
+
+
+def admin_product_update(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        form = AdminProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('products-admin-view')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'adminEdit.html', {'form': form})
 
 
 
