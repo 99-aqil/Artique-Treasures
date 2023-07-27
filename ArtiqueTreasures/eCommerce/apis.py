@@ -59,14 +59,14 @@ class UserLoginAPIView(APIView):
 """***************************************** APIS  FOR  ADMIN *****************************************"""
             
 
-# class ProductsListAdminView(APIView):
-#     def get(self, request, format=None):
-#         users = User.objects.all()
-#         user_serializer = UserSerializer(users, many=True)
-#         products = Product.objects.all()
-#         product_serializer = ProductSerializer(products, many=True)
-#         return render(request, 'adminView.html', {'users': user_serializer.data, 'latestProducts': product_serializer.data})
-#         # return Response(serializer.data)
+class ProductsListAdminView(APIView):
+    def get(self, request, format=None):
+        users = User.objects.all()
+        user_serializer = UserSerializer(users, many=True)
+        products = Product.objects.all()
+        product_serializer = ProductSerializer(products, many=True)
+        return render(request, 'adminView.html', {'users': user_serializer.data, 'latestProducts': product_serializer.data})
+        # return Response(serializer.data)
 
 
 """***************************************** APIS  FOR  SELLER *****************************************"""
