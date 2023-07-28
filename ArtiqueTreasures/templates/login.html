@@ -34,13 +34,16 @@
                     data: formData,
                     success: function(response) { 
                         if (response.message == "Seller") {
-                            window.location.href = 'http://127.0.0.1:8000/productsSellerView/';
+                            var sellerId = response.user.id;
+                            window.location.href = 'http://127.0.0.1:8000/sellerView/' + sellerId + '/';
                         } 
                         else if (response.message == "Admin") {
-                            window.location.href = 'http://127.0.0.1:8000/productsAdminView/';
+                            var adminId = response.user.id;
+                            window.location.href = 'http://127.0.0.1:8000/adminView/' + adminId + '/';
                         } 
                         else {
-                            window.location.href = 'http://127.0.0.1:8000/productsCustomerView/';
+                            var customerId = response.id;
+                            window.location.href = 'http://127.0.0.1:8000/customerView/' + customerId + '/';
                         }
                     },
                     error: function(error) {
