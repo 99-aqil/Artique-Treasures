@@ -75,11 +75,16 @@
                                 <option value="Dispatched" {% if form.status.value == "Dispatched" %}selected{% endif %}>Dispatched</option>
                             </select>
                         </div>
+                        {% else %}
+                        <div class="col-6 mb-3">
+                            <label>Status</label>
+                            {{form.status}}
+                        </div>
                         {% endif %}
                     </div>
                     <br>
                     <div class="modal-footer">
-                        <a href="{% url 'products-seller-view' %}">
+                        <a href="{% url 'seller-view' %}">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </a>
                         <button type="submit" class="btn btn-primary">Update Product Info</button>

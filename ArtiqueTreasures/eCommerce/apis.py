@@ -56,7 +56,7 @@ class UserLoginAPIView(APIView):
             
 
 class AdminViewAPI(APIView):
-    def get(self, request, pk=None):
+    def get(self, request):
         users = User.objects.all()
         user_serializer = UserSerializer(users, many=True)
         products = Product.objects.all()
@@ -69,7 +69,7 @@ class AdminViewAPI(APIView):
             
 
 class SellerViewAPI(APIView):
-    def get(self, request, pk=None):
+    def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
         return render(request, 'sellerView.html', {'latestProducts': serializer.data})

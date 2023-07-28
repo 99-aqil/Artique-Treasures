@@ -21,7 +21,7 @@ def admin_product_update(request, pk):
         form = AdminProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('products-admin-view')
+            return redirect('admin-view')
     else:
         form = ProductForm(instance=product)
     return render(request, 'adminEdit.html', {'form': form})
@@ -43,7 +43,7 @@ def product_create(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('products-seller-view')
+            return redirect('seller-view')
     else:
         form = ProductForm()
     return render(request, {'form': form})
@@ -54,7 +54,7 @@ def product_update(request, pk):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('products-seller-view')
+            return redirect('seller-view')
     else:
         form = ProductForm(instance=product)
     return render(request, 'edit.html', {'form': form})
@@ -63,7 +63,7 @@ def product_delete(request, pk):
     product = Product.objects.get(id=pk)
     product.delete()
 
-    return redirect('products-seller-view')
+    return redirect('seller-view')
 
 
 
