@@ -102,6 +102,15 @@ class CustomerInfoAPI(APIView):
             queryset = User.objects.all()
             serializer = UserSerializer(queryset, many=True)
             return Response(serializer.data)
+    
+    def post(self, request, pk=None):
+        if pk:
+            instance = User.objects.get(pk=pk)
+            serializer = UserSerializer(instance, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return render(request, 'myInfo.html', {'user': serializer.data})
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ArtCategoryView(APIView):
     def get(self, request, pk=None):
