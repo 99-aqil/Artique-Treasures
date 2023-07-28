@@ -20,7 +20,7 @@
                 <h3 class="product-name">{{ product.name }}</h3>
                 <p class="product-description">{{ product.description }}</p>
                 <p class="product-price">৳ {{ product.price }}</p>
-                <a href="{% url 'add-to-cart' product.id %}" class="product-button">Add To Cart</a>
+                <a href="{% url 'add-to-cart' product.id user.id %}" class="product-button">Add To Cart</a>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
-from .models import Product
+from .models import Product, User
 from .forms import AdminProductForm, ProductForm
 
 
@@ -69,29 +69,32 @@ def product_delete(request, pk):
 
 """********************************************** C A R T **********************************************"""
 
-def add_to_cart(request, product_id):
+def add_to_cart(request, product_id, user_id):
     product = Product.objects.get(pk=product_id)
     cart = request.session.get('cart', [])
     cart.append(product_id)
     request.session['cart'] = cart
-    messages.success(request, f"{product.name} added to cart!")
-    return redirect('product-detail', pk=product_id)
+    user = User.objects.get(pk=user_id)
+    # messages.success(request, f"{product.name} added to cart!")
+    return redirect('product-detail', product_id=product_id, user_id=user_id)
 
-def cart_view(request):
+def cart_view(request, pk=None):
     cart_item_ids = request.session.get('cart', [])
     cart_items = Product.objects.filter(pk__in=cart_item_ids)
     total_price = sum(item.price for item in cart_items)
+    user = User.objects.get(pk=pk)
 
     context = {
+        'user': user,
         'cart_items': cart_items,
         'total_price': total_price,
     }
     print(context)
     return render(request, 'cart.html', context)
 
-def clear_cart(request):
+def clear_cart(request, pk=None):
     request.session['cart'] = []
-    return redirect('cart-view')
+    return redirect('cart-view', pk)
 
 def checkout(request):
     return render(request, 'checkout.html')

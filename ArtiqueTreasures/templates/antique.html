@@ -14,7 +14,7 @@
         <h3 class="is-size-4">{{ product.name }}</h3>
         <p class="is-size-6 has-text-grey">৳ {{ product.price }}</p>
 
-        <a href="{% url 'product-detail' product.id %}" class="button is-dark mt-4">View details</a>
+        <a href="{% url 'product-detail' product.id user.id %}" class="button is-dark mt-4">View details</a>
     </div>
     {% endfor %}
 <div>

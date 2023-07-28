@@ -10,21 +10,22 @@
     <div class="navbar">
         <div class="navbar__left">
             <div class="navbar__logo">
-                <a href="{% url 'products-customer-view' %}" class="text-danger"> 
+                <a href="{% url 'customer-view' user.id %}" class="text-danger"> 
                 Artique Treasures
             </a>
             </div>
             <div class="navbar__search-form">
-                <form method="GET" action="{% url 'search' %}">
+                <form method="GET" action="{% url 'search' user.id %}">
                     <input type="text" name="query" placeholder="Search" value="{{ request.GET.query }}">
                     <input type="submit" value="Search">
                 </form>
             </div>       
         </div>
         <div class="navbar__right">
-            <a href="{% url 'art-category' %}" class="navbar__link1">Art</a>
-            <a href="{% url 'antique-category' %}" class="navbar__link1">Antique</a>
-            <a href="{% url 'cart-view' %}" class="navbar__link1">Cart {% if cart_items_count > 0 %} ({{ cart_items_count }}) {% endif %}</a>
+            <a href="{% url 'customer-info' user.id %}" class="navbar__link1">My Account</a>
+            <a href="{% url 'art-category' user.id %}" class="navbar__link1">Art</a>
+            <a href="{% url 'antique-category' user.id %}" class="navbar__link1">Antique</a>
+            <a href="{% url 'cart-view' user.id %}" class="navbar__link1">Cart {% if cart_items_count > 0 %} ({{ cart_items_count }}) {% endif %}</a>
             <div class="navbar__logout-form">
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
