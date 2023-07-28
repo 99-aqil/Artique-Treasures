@@ -3,28 +3,44 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="home-section">
-    <div class="row">
-        <div class="topic">
-            <h2 class="section-title">Product Detail</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="product-box">
-            <div class="col-md-6">
-                <p class="user-id">{{ user.id }}</p>
-                <p class="user-fullname">{{ user.fullname }}</p>
-                <p class="user-username">{{ user.username }}</p>
-                <p class="user-email">{{ user.email }}</p>
-                <p class="user-userType">{{ user.userType }}</p>
-                <p class="user-address_line1">{{ user.address_line1 }}</p>
-                <p class="user-address_line2">{{ user.address_line2 }}</p>
-                <p class="user-city">{{ user.city }}</p>
-                <p class="user-state">{{ user.state }}</p>
-                <p class="user-zipcode">{{ user.zip_code }}</p>
-                <p class="user-country">{{ user.country }}</p>
-            </div>
-        </div>
-    </div>
+<h2 class="custom-heading">Customer Information</h2>
+<div class="customer-info">
+    <form method="post">
+        {% csrf_token %}
+        <label for="fullname">Full Name:</label>
+        <input type="text" name="fullname" value="{{ user.fullname }}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ user.email }}" required><br>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="{{ user.username }}" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" value="{{ user.password }}" required><br>
+
+        <label for="userType">User Type:</label>
+        <input type="text" name="userType" value="{{ user.userType }}" required><br>
+
+        <label for="address_line1">Address Line 1:</label>
+        <input type="text" name="address_line1" value="{{ user.address_line1 }}"><br>
+
+        <label for="address_line2">Address Line 2:</label>
+        <input type="text" name="address_line2" value="{{ user.address_line2 }}"><br>
+
+        <label for="city">City:</label>
+        <input type="text" name="city" value="{{ user.city }}"><br>
+
+        <label for="state">State:</label>
+        <input type="text" name="state" value="{{ user.state }}"><br>
+
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" name="zip_code" value="{{ user.zip_code }}"><br>
+
+        <label for="country">Country:</label>
+        <input type="text" name="country" value="{{ user.country }}"><br>
+
+        <input type="submit" value="Update">
+    </form>
 </div>
 {% endblock %}

@@ -20,19 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
             'zip_code',
             'country'
             ]
-
-# class ShippingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = [
-#             'address_line1', 
-#             'address_line2', 
-#             'city', 
-#             'state', 
-#             'zip_code',
-#             'country'
-#             ]
-
+            
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product

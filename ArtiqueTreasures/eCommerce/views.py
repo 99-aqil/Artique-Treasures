@@ -14,6 +14,7 @@ def registrationView(request):
 def logoutView(request):
     return redirect('login-page')
 
+"""********************************************** Update Operation for Admin **********************************************"""
 
 def admin_product_update(request, pk):
     product = get_object_or_404(Product, pk=pk)
