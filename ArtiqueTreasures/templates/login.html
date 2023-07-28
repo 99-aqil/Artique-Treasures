@@ -34,12 +34,10 @@
                     data: formData,
                     success: function(response) { 
                         if (response.message == "Seller") {
-                            var sellerId = response.user.id;
-                            window.location.href = 'http://127.0.0.1:8000/sellerView/' + sellerId + '/';
+                            window.location.href = 'http://127.0.0.1:8000/sellerView/';
                         } 
                         else if (response.message == "Admin") {
-                            var adminId = response.user.id;
-                            window.location.href = 'http://127.0.0.1:8000/adminView/' + adminId + '/';
+                            window.location.href = 'http://127.0.0.1:8000/adminView/';
                         } 
                         else {
                             var customerId = response.id;
