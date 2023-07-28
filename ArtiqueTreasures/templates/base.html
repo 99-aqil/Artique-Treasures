@@ -25,7 +25,7 @@
             <a href="{% url 'customer-info' user.id %}" class="navbar__link1">My Account</a>
             <a href="{% url 'art-category' user.id %}" class="navbar__link1">Art</a>
             <a href="{% url 'antique-category' user.id %}" class="navbar__link1">Antique</a>
-            <a href="{% url 'cart-view' user.id %}" class="navbar__link1">Cart {% if cart_items_count > 0 %} ({{ cart_items_count }}) {% endif %}</a>
+            <a href="{% url 'cart-view' user.id %}" class="navbar__link1">Cart</a>
             <div class="navbar__logout-form">
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
