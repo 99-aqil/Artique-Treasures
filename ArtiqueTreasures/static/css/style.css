@@ -390,3 +390,75 @@ ul li:last-child {
 .customer-info input[type="submit"]:hover {
   background-color: #333;
 }
+
+/* Shipping address */
+
+.confirmation {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.confirmation p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.confirmation h3 {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.confirmation strong {
+  font-weight: bold;
+}
+
+.shipping-address {
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.update-btn {
+  padding: 10px 15px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn:hover {
+  background-color: #333;
+}
+
+.confirm-btn {
+  padding: 12px 20px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #333;
+}
