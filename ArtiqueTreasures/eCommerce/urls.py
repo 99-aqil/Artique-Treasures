@@ -17,7 +17,7 @@ urlpatterns = [
     path('products/update/<int:pk>/', views.product_update, name='product-update'),
     # path('products/delete/<int:pk>/', views.product_delete, name='product-delete'),
     path('paymentOption/<int:pk>/', views.paymentOption, name='payment-option'),
-    # path('thankyou/', views.thankYou, name='thankyou'),
+    path('thankyou/', views.thankYou, name='thankyou'),
 
 
     path('login/', apis.UserLoginAPIView.as_view(), name='login'),
@@ -28,6 +28,6 @@ urlpatterns = [
     path('customerView/<int:pk>/', apis.CustomerViewAPI.as_view(), name='customer-view'),
     path('search/<int:pk>/', apis.search, name="search"),
     path('productDetail/<int:product_id>/<int:user_id>/', apis.ProductDetailAPI.as_view(), name="product-detail"),
-    # path('artCategory/<int:pk>/', apis.ArtCategoryView.as_view(), name="art-category"),
+    path('artCategory/<int:pk>/', apis.ArtCategoryView.as_view(), name="art-category"),
     path('antiqueCategory/<int:pk>/', apis.AntiqueCategoryView.as_view(), name="antique-category"),
 ]

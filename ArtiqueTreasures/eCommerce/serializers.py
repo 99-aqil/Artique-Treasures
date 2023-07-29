@@ -13,9 +13,9 @@ class UserSerializer(serializers.ModelSerializer):
             'username', 
             'password', 
             'userType',
-            # 'address_line1', 
-            # 'address_line2', 
-            # 'city', 
+            'address_line1', 
+            'address_line2', 
+            'city', 
             # 'state', 
             # 'zip_code',
             # 'country'
