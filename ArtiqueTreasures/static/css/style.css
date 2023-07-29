@@ -179,7 +179,7 @@ body {
   }
   
   .button:hover {
-    background-color: #555;
+    background-color: #666;
   }
 
 /* CSS FOR PRODUCT DETAILS */
@@ -253,7 +253,7 @@ body {
 }
 
 .product-button:hover {
-  background-color:  #333;
+  background-color:  #666;
 }
 
 /* CSS for cart.html */
@@ -326,7 +326,7 @@ ul li:last-child {
 }
 
 .cart-button:hover {
-  background-color: #555;
+  background-color: #666;
 }
 
 /* Empty cart message */
@@ -338,7 +338,7 @@ ul li:last-child {
 /* CSS for customer-info class */
 .custom-heading {
   font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   color: #333;
   background-color: #f2f2f2;
   padding: 10px 20px;
@@ -388,13 +388,13 @@ ul li:last-child {
 }
 
 .customer-info input[type="submit"]:hover {
-  background-color: #333;
+  background-color: #666;
 }
 
-/* Shipping address */
+/* Confirm Order */
 
 .confirmation {
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -423,9 +423,9 @@ ul li:last-child {
   font-weight: bold;
 }
 
-.shipping-address {
+/* .shipping-address {
   margin-bottom: 20px;
-}
+} */
 
 .action-buttons {
   display: flex;
@@ -445,20 +445,56 @@ ul li:last-child {
 }
 
 .update-btn:hover {
-  background-color: #333;
+  background-color: #666;
 }
 
-.confirm-btn {
-  padding: 12px 20px;
-  color: #fff;
-  background-color: #333;
-  border: none;
+/* Styling for the payment options container */
+
+.payment-options-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally center the items */
+}
+
+.payment-option {
+  background-color: #f9f9f9;
+  padding: 20px;
   border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  max-width: 400px; /* Optional: Adjust the max-width to your preference */
+  width: 100%; /* Optional: Ensure the payment options take full width */
+}
+
+.payment-option h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.payment-option p {
+  color: #666;
   font-size: 16px;
-  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Styling for the "Pay Online" button */
+
+.payment-option .update-btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 
-.confirm-btn:hover {
-  background-color: #333;
+.payment-option .update-btn:hover {
+  background-color: #666;
 }
+
+/* Optional: Add more CSS for responsiveness and other styles as needed */
+

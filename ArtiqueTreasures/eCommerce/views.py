@@ -14,6 +14,16 @@ def registrationView(request):
 def logoutView(request):
     return redirect('login-page')
 
+def paymentOption(request, pk=None):
+    user = User.objects.get(pk=pk)
+    context = {
+        'user': user
+    }
+    return render(request, 'paymentOptions.html', context)
+
+def thankYou(request):
+    return render(request, 'thankYou.html')
+
 """********************************************** Update Operation for Admin **********************************************"""
 
 def admin_product_update(request, pk):
@@ -107,4 +117,4 @@ def checkout(request, pk=None):
         'cart_items': cart_items,
         'total_price': total_price,
     }
-    return render(request, 'address.html', context)
+    return render(request, 'confirmOrder.html', context)
