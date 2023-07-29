@@ -5,14 +5,19 @@
     <h1>Search Results for "{{ query }}"</h1>
     {% for product in products %}
     <div class="box">
-        <figure class="image mb-4">
+        {% if product.status == "Order Placed" or product.status == "Dispatched" %}
+        <figure class="image1 mb-4 out-of-stock">
             <img src="{{ product.get_thumbnail }}" alt="{{ product.name }}">
         </figure>
-
+        {% else %}
+        <figure class="image2 mb-4">
+            <img src="{{ product.get_thumbnail }}" alt="{{ product.name }}">
+        </figure>
+        {% endif %}
         <h3 class="is-size-4">{{ product.name }}</h3>
         <p class="is-size-6 has-text-grey">৳ {{ product.price }}</p>
 
-        <a href="{% url 'product-detail' product.id %}" class="button is-dark mt-4">View details</a>
+        <a href="{% url 'product-detail' product.id user.id %}" class="button is-dark mt-4">View details</a>
     </div>
     {% endfor %}
 <div>
