@@ -6,7 +6,7 @@
 <h2 class="custom-heading">Please confirm your shipping address and order summary before proceeding with your purchase.</h2>
 <div class="confirmation">
     <div class="row">
-        <div class="shipping-address col-md-6">
+        {% comment %} <div class="shipping-address col-md-6">
             <h3>Shipping Address</h3>
             <p><strong>Full Name:</strong> {{ user.fullname }}</p>
             <p><strong>Email:</strong> {{ user.email }}</p>
@@ -17,7 +17,7 @@
             <p><strong>State:</strong> {{ user.state }}</p>
             <p><strong>Zip Code:</strong> {{ user.zip_code }}</p>
             <p><strong>Country:</strong> {{ user.country }}</p>
-        </div>
+        </div> {% endcomment %}
         <div class="order-summary col-md-6">
             <h3>Order Summary</h3>
             <ul>
