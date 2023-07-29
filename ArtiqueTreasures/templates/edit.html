@@ -76,12 +76,21 @@
                             </select>
                         </div>
                         {% else %}
-                        <div class="col-6 mb-3">
-                            <label>Status</label>
-                            <select name="status" class="form-control">
-                                <option value="Not Approved" {% if form.status.value == "Not Approved" %}selected{% endif %}>Not Approved</option>
-                            </select>
-                        </div>
+                            {% if form.status.value == "Approved" %}
+                            <div class="col-6 mb-3">
+                                <label>Status</label>
+                                <select name="status" class="form-control">
+                                    <option selected>Approved</option>
+                                </select>
+                            </div>
+                            {% else %}
+                            <div class="col-6 mb-3">
+                                <label>Status</label>
+                                <select name="status" class="form-control">
+                                    <option selected>Not Approved</option>
+                                </select>
+                            </div>
+                            {% endif %}
                         {% endif %}
                     </div>
                     <br>
