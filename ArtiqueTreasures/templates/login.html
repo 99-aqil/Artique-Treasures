@@ -34,13 +34,14 @@
                     data: formData,
                     success: function(response) { 
                         if (response.message == "Seller") {
-                            window.location.href = 'http://127.0.0.1:8000/productsSellerView/';
+                            window.location.href = 'http://127.0.0.1:8000/sellerView/';
                         } 
                         else if (response.message == "Admin") {
-                            window.location.href = 'http://127.0.0.1:8000/productsAdminView/';
+                            window.location.href = 'http://127.0.0.1:8000/adminView/';
                         } 
                         else {
-                            window.location.href = 'http://127.0.0.1:8000/productsCustomerView/';
+                            var customerId = response.id;
+                            window.location.href = 'http://127.0.0.1:8000/customerView/' + customerId + '/';
                         }
                     },
                     error: function(error) {
@@ -51,7 +52,7 @@
         });
     </script>
     <link rel="stylesheet" href={% static "css/style.css" %}>
-    <title>Student Register</title>
+    <title>User Login</title>
 </head>
 <body>
     <div class="container-fluid py-5">

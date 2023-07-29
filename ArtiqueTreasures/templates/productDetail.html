@@ -16,12 +16,18 @@
                     <img src="{{ product.get_image }}" alt="{{ product.name }}">
                 </figure>
             </div>
-            <div class="col-md-6">
-                <h3 class="product-name">{{ product.name }}</h3>
-                <p class="product-description">{{ product.description }}</p>
-                <p class="product-price">৳ {{ product.price }}</p>
-                <a href="{% url 'add-to-cart' product.id %}" class="product-button">Add To Cart</a>
-            </div>
+            {% comment %} <div class="col-md-6">
+                <div class="product-lane">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">৳ {{ product.price }}</p>
+                    {% if product.status == "Order Placed" or product.status == "Dispatched" %}
+                    <h3>Out Of Stock</h3>
+                    {% else %}
+                    <a href="{% url 'add-to-cart' product.id user.id %}" class="product-button">Add To Cart</a>
+                    {% endif %}
+                </div>
+            </div> {% endcomment %}
         </div>
     </div>
 </div>

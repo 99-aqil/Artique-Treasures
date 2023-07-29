@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Order{% endblock %}
+
+{% block content %}
+<h2 class="custom-heading">Please confirm your shipping address and order summary before proceeding with your purchase.</h2>
+<div class="confirmation">
+    <div class="row">
+        {% comment %} <div class="shipping-address col-md-6">
+            <h3>Shipping Address</h3>
+            <p><strong>Full Name:</strong> {{ user.fullname }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Address Line 1:</strong> {{ user.address_line1 }}</p>
+            <p><strong>Address Line 2:</strong> {{ user.address_line2 }}</p>
+            <p><strong>City:</strong> {{ user.city }}</p>
+            <p><strong>State:</strong> {{ user.state }}</p>
+            <p><strong>Zip Code:</strong> {{ user.zip_code }}</p>
+            <p><strong>Country:</strong> {{ user.country }}</p>
+        </div> {% endcomment %}
+        <div class="order-summary col-md-6">
+            <h3>Order Summary</h3>
+            <ul>
+                {% for item in cart_items %}
+                <li>{{ item.name }} - ৳{{ item.price }}</li>
+                {% endfor %}
+            </ul>
+            <p class="total-price">Total Price: ৳{{ total_price }}</p>
+        </div>
+    <div class="action-buttons">
+        <a href="{% url 'customer-info' user.id %}" class="update-btn">Update Address</a>
+        <a href="{% url 'payment-option' user.id %}" class="update-btn">Confirm Order</a>
+    </div>
+</div>
+{% endblock %}

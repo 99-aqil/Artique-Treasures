@@ -7,13 +7,20 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
+            'id',
             'fullname', 
             'email', 
             'username', 
             'password', 
-            'userType'
+            'userType',
+            # 'address_line1', 
+            # 'address_line2', 
+            # 'city', 
+            # 'state', 
+            # 'zip_code',
+            # 'country'
             ]
-
+            
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
