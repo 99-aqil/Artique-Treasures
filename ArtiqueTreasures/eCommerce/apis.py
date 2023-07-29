@@ -82,7 +82,7 @@ class CustomerViewAPI(APIView):
     def get(self, request, format=None, pk=None):
         user = User.objects.get(pk=pk)
         user_serializer = UserSerializer(user)
-        products = Product.objects.filter(status="Approved")
+        products = Product.objects.filter(status__in=["Approved", "Order Placed", "Dispatched"])
         product_serializer = ProductSerializer(products, many=True)
         return render(request, 'customerView.html', {'user': user_serializer.data, 'latestProducts': product_serializer.data})
         # response_data = {"user": user_serializer.data, "product": product_serializer.data}
@@ -103,31 +103,31 @@ class CustomerInfoAPI(APIView):
             serializer = UserSerializer(queryset, many=True)
             return Response(serializer.data)
     
-    def post(self, request, pk=None):
-        if pk:
-            instance = User.objects.get(pk=pk)
-            serializer = UserSerializer(instance, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return render(request, 'myInfo.html', {'user': serializer.data})
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def post(self, request, pk=None):
+    #     if pk:
+    #         instance = User.objects.get(pk=pk)
+    #         serializer = UserSerializer(instance, data=request.data)
+    #         if serializer.is_valid():
+    #             serializer.save()
+    #             return render(request, 'myInfo.html', {'user': serializer.data})
+    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ArtCategoryView(APIView):
     def get(self, request, pk=None):
         user = User.objects.get(pk=pk)
         user_serializer = UserSerializer(user)
-        products = Product.objects.filter(category="Art", status="Approved")
+        products = Product.objects.filter(category="Art", status__in=["Approved", "Order Placed", "Dispatched"])
         serializer = ProductSerializer(products, many=True)
         return render(request, 'art.html', {'user': user_serializer.data, 'products': serializer.data})
 
 
-class AntiqueCategoryView(APIView):
-    def get(self, request, pk=None):
-        user = User.objects.get(pk=pk)
-        user_serializer = UserSerializer(user)
-        products = Product.objects.filter(category="Antique", status="Approved")
-        serializer = ProductSerializer(products, many=True)
-        return render(request, 'antique.html', {'user': user_serializer.data, 'products': serializer.data})
+# class AntiqueCategoryView(APIView):
+#     def get(self, request, pk=None):
+#         user = User.objects.get(pk=pk)
+#         user_serializer = UserSerializer(user)
+#         products = Product.objects.filter(category="Antique", status__in=["Approved", "Order Placed", "Dispatched"])
+#         serializer = ProductSerializer(products, many=True)
+#         return render(request, 'antique.html', {'user': user_serializer.data, 'products': serializer.data})
         
 
 class ProductDetailAPI(APIView):
@@ -148,15 +148,15 @@ class ProductDetailAPI(APIView):
             return Response(serializer.data)
             
 
-@api_view(['GET', 'POST'])
-def search(request, pk=None):
-    query = request.GET.get('query', '')
-    user = User.objects.get(pk=pk)
-    user_serializer = UserSerializer(user)
+# @api_view(['GET', 'POST'])
+# def search(request, pk=None):
+#     query = request.GET.get('query', '')
+#     user = User.objects.get(pk=pk)
+#     user_serializer = UserSerializer(user)
 
-    if query:
-        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query), status="Approved")
-        serializer = ProductSerializer(products, many=True)
-        return render(request, 'search.html', {'user': user_serializer.data, 'products': serializer.data, 'query': query})
-    else:
-        return render(request, 'search.html', {'user': user_serializer.data, 'products': [], 'query': query})
+#     if query:
+#         products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query), status__in=["Approved", "Order Placed", "Dispatched"])
+#         serializer = ProductSerializer(products, many=True)
+#         return render(request, 'search.html', {'user': user_serializer.data, 'products': serializer.data, 'query': query})
+#     else:
+#         return render(request, 'search.html', {'user': user_serializer.data, 'products': [], 'query': query})

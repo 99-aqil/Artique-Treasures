@@ -21,21 +21,28 @@ def paymentOption(request, pk=None):
     }
     return render(request, 'paymentOptions.html', context)
 
-def thankYou(request):
-    return render(request, 'thankYou.html')
+# def thankYou(request):
+#     cart_item_ids = request.session.get('cart', [])
+#     cart_items = Product.objects.filter(pk__in=cart_item_ids)
+#     for item in cart_items:
+#         if item.status == "Order Placed":
+#             continue
+#         item.status = "Order Placed"
+#         item.save()
+#     return render(request, 'thankYou.html')
 
 """********************************************** Update Operation for Admin **********************************************"""
 
-def admin_product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = AdminProductForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('admin-view')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'adminEdit.html', {'form': form})
+# def admin_product_update(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
+#     if request.method == 'POST':
+#         form = AdminProductForm(request.POST, instance=product)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('admin-view')
+#     else:
+#         form = ProductForm(instance=product)
+#     return render(request, 'adminEdit.html', {'form': form})
 
 
 
@@ -106,15 +113,15 @@ def clear_cart(request, pk=None):
     request.session['cart'] = []
     return redirect('cart-view', pk)
 
-def checkout(request, pk=None):
-    cart_item_ids = request.session.get('cart', [])
-    cart_items = Product.objects.filter(pk__in=cart_item_ids)
-    total_price = sum(item.price for item in cart_items)
-    user = User.objects.get(pk=pk)
+# def checkout(request, pk=None):
+#     cart_item_ids = request.session.get('cart', [])
+#     cart_items = Product.objects.filter(pk__in=cart_item_ids)
+#     total_price = sum(item.price for item in cart_items)
+#     user = User.objects.get(pk=pk)
 
-    context = {
-        'user': user,
-        'cart_items': cart_items,
-        'total_price': total_price,
-    }
-    return render(request, 'confirmOrder.html', context)
+#     context = {
+#         'user': user,
+#         'cart_items': cart_items,
+#         'total_price': total_price,
+#     }
+#     return render(request, 'confirmOrder.html', context)
